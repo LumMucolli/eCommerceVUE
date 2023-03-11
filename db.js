@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = 'mongodb://localhost:27017/'; // Replace this with your MongoDB URI
+const uri = 'mongodb://localhost:27017/Ecommerce'; // Replace this with your MongoDB URI
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
