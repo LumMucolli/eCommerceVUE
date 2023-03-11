@@ -2,11 +2,12 @@
   <div class="home-page">
     <h1>Welcome to my eCommerce store!</h1>
     <p>Check out our latest products:</p>
-    <product-list :products="products" />
+    <productList :products="products" />
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import ProductList from '@/components/ProductList.vue';
 
 export default {
@@ -20,7 +21,13 @@ export default {
     };
   },
   created() {
-    // Fetch products data from API
+    axios.get('/api/products')
+      .then(response => {
+        this.products = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   },
 };
 </script>
