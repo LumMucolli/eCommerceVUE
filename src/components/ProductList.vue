@@ -8,26 +8,24 @@
         <h5 class="product-card-title">{{ product.name }}</h5>
         <p class="product-card-text">{{ product.description }}</p>
         <div class="product-card-footer">
-          <p class="product-card-price">{{ product.price | currency }}</p>
-          <router-link :to="{ name: 'product', params: { id: product._id }}" class="btn btn-primary">View</router-link>
+          <p class="product-card-price">{{ formattedPrice(product.price) }}</p>
+          <router-link :to="{ name: 'product', params: { id: product._id } }" class="btn btn-primary">View</router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'ProductList',
   props: ['products'],
-  filters: {
-    currency(value) {
-      return '$' + value.toFixed(2);
+  methods: {
+    formattedPrice(price) {
+      return '$' + price.toFixed(2);
     }
   }
 }
 </script>
-
 <style scoped>
 .product-list {
   display: flex;

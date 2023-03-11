@@ -1,14 +1,17 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import ProductList from '../components/ProductList'
-import ProductDetails from '../components/ProductDetails'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-Vue.use(VueRouter)
+// import your route components here
+import ProductList from '../components/ProductList.vue';
+import ProductDetails from '../components/ProductDetails.vue';
+
+
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: '/products',
+    name: 'products',
     component: ProductList
   },
   {
@@ -16,12 +19,12 @@ const routes = [
     name: 'product',
     component: ProductDetails
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

@@ -3,7 +3,7 @@
         <div class="product-details-header">
             <h1>{{ product.name }}</h1>
             <p>{{ product.description }}</p>
-            <p class="product-price">{{ product.price | currency }}</p>
+            <p class="product-price">{{ formatCurrency(product.price) }}</p>
         </div>
         <div class="product-details-body">
             <img :src="product.image" alt="">
@@ -16,36 +16,33 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: 'ProductDetails',
     data() {
         return {
-            product: {}
-        }
-    },
-    filters: {
-        currency(value) {
-            return '$' + value.toFixed(2);
-        }
+            product: {},
+        };
     },
     mounted() {
-        // fetch the product data from the backend based on the id in the route params
         this.fetchProduct(this.$route.params.id);
     },
     methods: {
         fetchProduct(id) {
-            // use axios to make a GET request to the backend API endpoint for retrieving a product by id
-            // update the product data in the component's data when the response is received
-            axios.get(`/api/products/${id}`)
-                .then(response => {
+            axios
+                .get(`/api/products/${id}`)
+                .then((response) => {
                     this.product = response.data;
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
-        }
-    }
-}
+        },
+        formatCurrency(price) {
+            return '$' + price.toFixed(2);
+        },
+    },
+};
 </script>
 
 <style scoped>
