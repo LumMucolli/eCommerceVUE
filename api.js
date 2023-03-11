@@ -33,3 +33,7 @@ app.put('/api/products/:id', async (req, res) => {
 });
 
 // Delete a product
+app.delete('/api/products/:id', async (req, res) => {
+  await Product.findByIdAndDelete(req.params.id);
+  res.sendStatus(200);
+});
